@@ -1,0 +1,22 @@
+.btn {
+    width: 153px;
+    height: 32px;
+    background-color: $main-color;
+    border-radius: 5px;
+    border: none;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #ffffff;
+    &_main {
+        margin-top: 65px;
+        width: 303px;
+        height: 54px;
+        font-size: 16px;
+    }
+    &_submit {
+        height: 58px;
+        width: 100%;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,26 @@
+@import 'base/varebles'; 
+
+* {
+    font-family: 'MuseoModerno', cursive;
+}
+
+.container {
+    position: relative;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+@import 'blocks/promo'; 
+@import 'blocks/headers'; 
+@import 'blocks/buttons'; 
+@import 'blocks/advantages'; 
+@import 'blocks/title'; 
+@import 'blocks/consultation'; 
+@import 'blocks/forms'; 
+@import 'blocks/slides'; 
+
+
+
+
+
+
