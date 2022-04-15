@@ -79,4 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    /* for animation */
+    new WOW().init();
 });
