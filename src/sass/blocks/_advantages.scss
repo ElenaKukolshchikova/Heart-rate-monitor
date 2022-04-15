@@ -34,4 +34,13 @@
 
         }
     }
+    &__animated {
+        animation: heartBeat 1.5s ease infinite;
+    }
+    &__animatedSteps {
+        animation: steps 1.5s ease infinite;
+    }
+    &__animatedCup {
+        animation: cup 1.7s ease infinite;
+    }
 }
