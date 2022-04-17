@@ -82,4 +82,51 @@ window.addEventListener('DOMContentLoaded', () => {
 
     /* for animation */
     new WOW().init();
+
+    /* modals */
+
+    function bindModal(triggerSelector, modalSelector, closeSelector) {
+        const trigger = document.querySelectorAll(triggerSelector);
+        const modal = document.querySelector(modalSelector);
+        const close = document.querySelector(closeSelector);
+        const overlay = document.querySelector('.overlay');
+    
+        trigger.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.target.blur();
+                overlay.style.display = 'block';
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+    
+            });
+        });
+    
+        close.addEventListener('click', () => {
+    
+            overlay.style.display = 'none';
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; 
+    
+        });
+    
+        overlay.addEventListener('click', (e) => {
+            if(e.target === overlay) {
+                overlay.style.display = 'none';
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    
+        document.addEventListener('keydown', (e) => {
+            if(e.code === 'Escape' &&  overlay.style.display === 'block') {
+                overlay.style.display = 'none';
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    
+    }
+    
+    bindModal('[data-modal]', '#consultation', '.modal__close');
+    bindModal('.btn_min', '#order', '[data-order]');
 });
