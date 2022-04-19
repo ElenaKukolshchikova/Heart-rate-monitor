@@ -130,9 +130,7 @@ window.addEventListener('DOMContentLoaded', () => {
     bindModal('[data-modal]', '#consultation', '.modal__close');
     bindModal('.btn_min', '#order', '[data-order]');
 
-    /*sending form data  */
-
-    
+    /* sending form data  */
     const form = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
     const phoneInputs = document.querySelectorAll('input[name="phone"]');
@@ -150,7 +148,6 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    /* отправляем запрос */
     const postData = async (url, data) => {
         
         document.querySelector('.status').textContent = message.loading;
