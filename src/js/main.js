@@ -129,4 +129,78 @@ window.addEventListener('DOMContentLoaded', () => {
     
     bindModal('[data-modal]', '#consultation', '.modal__close');
     bindModal('.btn_min', '#order', '[data-order]');
+
+    /*sending form data  */
+
+    
+    const form = document.querySelectorAll('form');
+    const inputs = document.querySelectorAll('input');
+    const phoneInputs = document.querySelectorAll('input[name="phone"]');
+
+    phoneInputs.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/\D/, '');
+        });
+    });
+
+    const message = {
+        loading: 'Загрузка..',
+        success: 'Спасибо за вашу заявку!',
+        failure: 'Что-то пошло не так'
+    };
+
+
+    /* отправляем запрос */
+    const postData = async (url, data) => {
+        
+        document.querySelector('.status').textContent = message.loading;
+        
+        let res = await fetch(url, {
+            method: "POST",
+            body: data
+        });
+
+        return await res.text();
+    };
+
+    const clearInputs = () => {
+        inputs.forEach(item => {
+            item.value = '';
+        });
+    };
+
+    form.forEach(item => {
+        item.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.style.cssText = `
+                display: block;
+                margin-top: 15px;
+                text-align: center;
+                color: #c70101;
+            `;
+            item.appendChild(statusMessage);
+
+            const formData = new FormData(item);
+
+            postData('server.php', formData)
+                .then(res => {
+                    console.log(res);
+                    
+                    statusMessage.textContent = message.success;
+                    setTimeout(() => {
+                        statusMessage.remove();
+                    }, 1500);
+                })
+                .catch(() => statusMessage.textContent = message.failure)
+                .finally(() => {
+                    clearInputs();
+                    setTimeout(() => {
+                        statusMessage.remove();
+                    }, 4000);
+                });
+        });
+    });
 });
